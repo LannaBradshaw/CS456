@@ -1,10 +1,14 @@
-from flask import Flask, request, jsonify
-import os, secrets, random
+import os
+import random
+import secrets
+
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 sessions = {}
 
-CREDENTIALS = {"admin" : "password123", "user":"password"}
+CREDENTIALS = {"admin": "password123", "user": "password"}
+
 
 @app.route("/login", methods=["POST"])
 def authenticate():
@@ -22,16 +26,11 @@ def authenticate():
         token = secrets.token_hex(32)
         sessions[token] = username
 
-        return jsonify({
-            "success": True,
-            "message": "Authenticated successfully",
-            "token": token
-        }), 200
+        return jsonify(
+            {"success": True, "message": "Authenticated successfully", "token": token}
+        ), 200
 
-    return jsonify({
-        "success": False,
-        "message": "Authentication unsuccessful"
-    }), 401
+    return jsonify({"success": False, "message": "Authentication unsuccessful"}), 401
 
 
 if __name__ == "__main__":
