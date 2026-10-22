@@ -33,5 +33,10 @@ def authenticate():
     return jsonify({"success": False, "message": "Authentication unsuccessful"}), 401
 
 
+@app.route("/status", methods=["GET"])
+def status():
+    return jsonify({"status": "Server is running"}), 200
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5555, debug=False)
