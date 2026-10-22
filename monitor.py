@@ -11,7 +11,7 @@ def get_status():
         response = requests.get("http://localhost:5555/status")
         return response.status_code == 200
     except requests.exceptions.RequestException as e:
-        print(f"Error occurred: {e}")
+        # print(f"Error occurred: {e}")
         return False
 
 
