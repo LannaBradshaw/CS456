@@ -19,6 +19,7 @@ online = get_status()
 print(f"Initial status: Server is {'Online' if online else 'Offline'}")
 
 while True:
+    init_status = online
     new_status = get_status()
 
     if not new_status:
@@ -29,7 +30,7 @@ while True:
         failures = 0
         online = True
 
-    if new_status != online:
+    if init_status != online:
         online = new_status
         print(f"Server status changed: Server is {'Online' if online else 'Offline'}")
 
