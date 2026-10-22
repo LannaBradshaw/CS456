@@ -34,4 +34,4 @@ while True:
         online = new_status
         print(f"Server status changed: Server is {'Online' if online else 'Offline'}")
 
-    time.sleep(1)
+    time.sleep(0.25)
