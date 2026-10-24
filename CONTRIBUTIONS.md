@@ -4,7 +4,6 @@
 
 ## Lanna Bradshaw
 - Made GitHub
-- PDF
 
 
 ## Ali Davachi
