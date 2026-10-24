@@ -4,7 +4,7 @@
 
 ## Lanna Bradshaw
 - Made GitHub
-- Team Deliverables
+- Team Deliverables (PDF)
 
 
 ## Ali Davachi
