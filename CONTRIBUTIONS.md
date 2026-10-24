@@ -4,9 +4,11 @@
 
 ## Lanna Bradshaw
 - Made GitHub
+- Project scaffolding
 
 
 ## Ali Davachi
+ - Built main auth service
  - Exploit Script
  - Video 
 
