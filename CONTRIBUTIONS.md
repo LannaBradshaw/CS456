@@ -17,4 +17,5 @@
 -
 
 ## Ryan Kispert
-- Monitor Service
+- Monitor Service, status route in main.py
+- requirements.txt, .gitignore
