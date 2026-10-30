@@ -1,9 +1,19 @@
-import time
+import os, subprocess, sys, time, requests
 
-import requests
+AUTH_SERVICE_PATH = os.path.join(os.path.dirname(__file__), "auth.py")
+STANDBY_PATH = os.path.join(os.path.dirname(__file__), "standby.activate")
+
+try:
+    os.remove(STANDBY_PATH)
+except OSError:
+    pass
+
+subprocess.Popen([sys.executable, AUTH_SERVICE_PATH])
+subprocess.Popen([sys.executable, AUTH_SERVICE_PATH, "--standby"])
 
 online = False
 failures = 0
+failover_started = False
 
 
 def get_status():
@@ -15,7 +25,12 @@ def get_status():
         return False
 
 
-online = get_status()
+for _ in range(20):
+    if get_status():
+        online = True
+        break
+    time.sleep(0.25)
+
 print(f"Initial status: Server is {'Online' if online else 'Offline'}")
 
 while True:
@@ -26,9 +41,21 @@ while True:
         failures += 1
         if failures >= 3:
             online = False
+
+            if not failover_started:
+                print(f"[Crash Detected]")
+                try:
+                    open(STANDBY_PATH, "a").close()
+                    failover_started = True
+                    print(f"[Failover Triggered]")
+                except OSError:
+                    print("Warm standby could not be activated")
     else:
         failures = 0
         online = True
+        if failover_started:
+            print(f"[Service Restored]")
+            failover_started = False
 
     if init_status != online:
         online = new_status

@@ -1,42 +1,14 @@
-import os
-import random
-import secrets
-
-from flask import Flask, jsonify, request
-
-app = Flask(__name__)
-sessions = {}
-
-CREDENTIALS = {"admin": "password123", "user": "password"}
+import os, signal, subprocess, sys
 
 
-@app.route("/login", methods=["POST"])
-def authenticate():
-    data = request.get_json() or {}
+ROOT = os.path.dirname(__file__)
+monitor = subprocess.Popen(
+    [sys.executable, os.path.join(ROOT, "monitor.py")],
+    start_new_session=True,
+)
 
-    fail = random.randint(1, 100)
-
-    if fail < 5:
-        os._exit(1)
-
-    username = data.get("username")
-    password = data.get("password")
-
-    if username in CREDENTIALS and CREDENTIALS[username] == password:
-        token = secrets.token_hex(32)
-        sessions[token] = username
-
-        return jsonify(
-            {"success": True, "message": "Authenticated successfully", "token": token}
-        ), 200
-
-    return jsonify({"success": False, "message": "Authentication unsuccessful"}), 401
-
-
-@app.route("/status", methods=["GET"])
-def status():
-    return jsonify({"status": "Server is running"}), 200
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5555, debug=False)
+try:
+    monitor.wait()
+except KeyboardInterrupt:
+    os.killpg(monitor.pid, signal.SIGTERM)
+    monitor.wait()
