@@ -5,6 +5,7 @@
 ## Lanna Bradshaw
 - Made GitHub
 - Project scaffolding
+- PDF for MP 1.1 and 1.2
 
 
 ## Ali Davachi
