@@ -9,14 +9,17 @@
 
 
 ## Ali Davachi
- - Built main auth service
- - Exploit Script
- - Video 
+- Built main auth service
+- Exploit Script
+- Video 
+- MP1.2 Redundancy implementation
 
 
 ## Jaxson Oles
--Implemented audit script
+- MP1.2 Implemented audit script
+- MP1.2 Video
 
 ## Ryan Kispert
-- Monitor Service, status route in main.py
+- Monitor Service, status route in auth.py
 - requirements.txt, .gitignore
+- MP1.2 Adversarial Assessment
