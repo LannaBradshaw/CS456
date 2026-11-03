@@ -1,17 +1,16 @@
 # Contributions 
-(This is not finished at all)
-
 
 ## Lanna Bradshaw
 - Made GitHub
 - Project scaffolding
-- PDF for MP 1.1 and 1.2
+- PDF for MP 1.1
+- PDF for MP 1.2 (excluding adversarial assessment)
 
 
 ## Ali Davachi
 - Built main auth service
 - Exploit Script
-- Video 
+- Video for MP 1.1
 - MP1.2 Redundancy implementation
 
 
